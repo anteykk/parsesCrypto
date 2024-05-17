@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		
+    <!-- Bootstrap CSS -->
+    <!--
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    -->
+    
+
+    
+    <link rel="stylesheet" href="materialize.min.css">
+    <script src="materialize.min.js"></script>
+    <link rel="stylesheet" href="style_1.css">
+		
+    <title>Тестовый сайт собраный из компонентов Materialize.css</title>
+
+    <!-- Иконки Materialize.css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="/faviconm.ico" type="image/x-icon">
+
+  </head>
+  <body id="lol">
+    <div class="container z-depth-4 top">
+      <div class="row top">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s4"><a class="active " href="#test1">Страны</a></li>
+            <li class="tab col s4"><a href="#test2">Макроэкономические показатели</a></li>
+            <li class="tab col s4"><a href="#test3">Рынок</a></li>
+          </ul>
+        </div>
+        <div id="test1" class="col s12">
+          <div class="container top padding-top">
+            <div class="row">
+              <div class="input-field col s12">
+                <form action="" method="post" @submit.prevent="form">
+                  <select v-model="selected">
+                    <option value="" disabled selected>Выберите страну</option>
+                    <option value="Estimatedcalendar">Соединенные Штаты</option>
+                    <option value="EuroArea">Зона евро</option>
+                    <option value="China">Китай</option>
+                    <option value="Japan">Япония</option>
+                    <option value="Germany">Германия</option>
+                    <option value="GreatBritain">Великобритания</option>
+                    <option value="France">Франция</option>
+                    <option value="India">Индия</option>
+                    <option value="Italy">Италия</option>
+                    <option value="Brazil">Бразилия</option>
+                    <option value="Canada">Канада</option>
+                    <option value="SouthKorea">Южная Корея</option>
+                    <option value="Russia">Россия</option>
+                    <option value="Spain">Испания</option>
+                    <option value="Australia">Австралия</option>
+                    <option value="Mexico">Мексика</option>
+                    <option value="Indonesia">Индонезия</option>
+                    <option value="Turkey">Турция</option>
+                    <option value="Netherlands">Нидерланды</option>
+                    <option value="Switzerland">Швейцария</option>
+                    <option value="SaudiArabia">Саудовская Аравия</option>
+                    <option value="Argentina">Аргентина</option>
+                    <option value="SouthAfrica">ЮАР</option>
+                    <option value="Singapore">Сингапур</option>
+                  </select>
+                  <label>Materialize Select</label>   
+                  <button type="submit" class="btn top col l4 offset-l4">Загрузить данные</button>  
+                            
+                </form>
+              </div> 
+              <div class="input-field col s12"></div>
+            </div>
+            
+            <div v-if="data" class="card-panel green white-text">Последнее обновления данных {{ dataRefresh }}</div> 
+
+              
+         <!--
+
+         <div id="test1" class="col s12">
+          <div class="container top">
+            <div class="row">
+              <form action="/" method="post" @submit.prevent="form">
+                <div class="input-field col s12">
+                  <select v-model="text">
+                    <option value="" disabled selected>Выберите страну</option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
+                    <option value="3">Option 3</option>
+                  </select>
+                  <label>Materialize Select</label>
+                </div>  <div class="input-field col s12">
+
+                <button type="submit" class="btn top col l4 offset-l4">Загрузить данные</button>  
+              </form>
+
+            
+
+                
+            </div>
+          </div>
+        </div>         
+
+         -->
+
+                
+            </div>
+          </div>
+        </div>
+        <div id="test2" class="col s12">
+          <div class="container">
+            <div class="row">
+                <table>
+                  <thead>
+                    <tr>
+                        <th>Показатель</th>
+                        <th>Страна</th>
+                        <th>Последний</th>
+                        <th>Предыдущий</th>
+                        <th>Ссылка</th>
+                        <th>Блок</th>
+                    </tr>
+                  </thead>
+          
+                  <tbody v-for="elem of databasa">
+                    <tr v-if="!elem.Moodys">
+                      <td class="grey-text"> {{ elem.micro }} </td>
+                      <td> {{ elem.country }} </td>
+                      <td> {{ elem.last }} </td>
+                      <td> {{ elem.first }} </td>
+                      <td> {{ elem.link }} </td>
+                      <td> {{ elem.block }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                <table>
+                  <thead>
+                    <tr>
+                        <th>Показатель</th>
+                        <th>Страна</th>
+                        <th>S&P</th>
+                        <th>Moody's</th>
+                        <th>Fitch</th>
+                        <th>DBRS</th>
+                        <th>TE</th>
+                    </tr>
+                  </thead>
+          
+                  <tbody v-for="elem of databasa">
+                    <tr v-if="elem.Moodys">
+                      <td class="grey-text"> {{ elem.micro }} </td>
+                      <td> {{ elem.country }} </td>
+                      <td> {{ elem.SP }} </td>
+                      <td> {{ elem.Moodys }} </td>
+                      <td> {{ elem.Fitch }} </td>
+                      <td> {{ elem.DBRS }} </td>
+                      <td> {{ elem.TE }} </td>
+                    </tr>
+                  </tbody>
+                </table>  
+                
+                
+
+            </div>
+          </div>
+        </div>
+        <div id="test3" class="col s12">
+            <div class="container">
+              <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    <li class="tab col s3 blue"><a class="active white-text" href="#test5">Валюты</a></li>
+                    <li class="tab col s3 blue"><a class="white-text" href="#test10">Акции</a></li>
+                    <li class="tab col s2 blue"><a class="white-text" href="#test7">Товаров</a></li>
+                    <li class="tab col s2 blue"><a class="white-text" href="#test8">Облигации</a></li>
+                    <li class="tab col s2 blue"><a class="white-text" href="#test9">Crypto</a></li>
+                  </ul>
+                </div>
+                <div id="test5" class="col s12">
+                  <!-- v-for="elem of matket[0].currencies[0]" -->
+                  <table class="responsive-table" v-for="(elem,index) of matket[0].currencies[0]" >
+                    <thead>
+                      <tr>
+                          <th> {{ mesCurrenciesCountry[index] }} </th>
+                          <th>Цена</th>
+                          <th>День</th>
+                          <th>%</th>
+                          <th>Еженедельно</th>
+                          <th>Ежемесячно</th>
+                          <th>YOY</th>
+                          <th>Дата</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody v-for="lol of elem">
+                      <tr>
+                        <td> {{ lol[1].currency }} </td>
+                        <td> {{ lol[2].price }} </td>
+                        <td> {{ lol[3].day }} </td>
+                        <td> {{ lol[4].percent }} </td>
+                        <td> {{ lol[5].everyweek }} </td>
+                        <td> {{ lol[6].everymonth }} </td>
+                        <td> {{ lol[7].yoy }} </td>
+                        <td> {{ lol[8].data }} </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="test7" class="col s12">
+                  <table class="responsive-table"  v-for="(elem, index) of matket[1].products[0]">
+                    <thead>
+                      <tr>
+                          <th> {{ mesProductsMaterial[index] }} </th>
+                          <th>Цена</th>
+                          <th>День</th>
+                          <th>%</th>
+                          <th>Еженедельно</th>
+                          <th>Ежемесячно</th>
+                          <th>YOY</th>
+                          <th>Дата</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody v-for="lol of elem">
+                      <tr>
+                        <td> {{ lol[0] }} </td>
+                        <td> {{ lol[1] }} </td>
+                        <td> {{ lol[2] }} </td>
+                        <td> {{ lol[3] }} </td>
+                        <td> {{ lol[4] }} </td>
+                        <td> {{ lol[5] }} </td>
+                        <td> {{ lol[6] }} </td>
+                        <td> {{ lol[7] }} </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="test8" class="col s12">
+                  <table class="responsive-table"  v-for="(elem, index) of matket[2].bonds[0]">
+                    <thead>
+                      <tr>
+                          <th> {{ mesBondsCountry[index] }} </th>
+                          <th>Цена</th>
+                          <th>День</th>
+                          <th>Еженедельно</th>
+                          <th>Ежемесячно</th>
+                          <th>YOY</th>
+                          <th>Дата</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody v-for="lol of elem">
+                      <tr>
+                        <td> {{ lol[1].currency }} </td>
+                        <td> {{ lol[2].price }} </td>
+                        <td> {{ lol[3].day }} </td>
+                        <td> {{ lol[4].everyweek }} </td>
+                        <td> {{ lol[5].everymonth }} </td>
+                        <td> {{ lol[6].yoy }} </td>
+                        <td> {{ lol[7].data }} </td>
+                      </tr>
+                    </tbody>
+                  </table>                  
+                </div>
+                <div id="test9" class="col s12">
+                  <table class="responsive-table"  v-for="(elem, index) of matket[3].crypto[0]">
+                    <thead>
+                      <tr>
+                          <th> {{ mesCrypto[index] }} </th>
+                          <th>Цена</th>
+                          <th>День</th>
+                          <th>%</th>
+                          <th>Еженедельно</th>
+                          <th>Ежемесячно</th>
+                          <th>YOY</th>
+                          <th>MarketCap</th>
+                          <th>Дата</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody v-for="lol of elem">
+                      <tr>
+                        <td> {{ lol[0].crypto }} </td>
+                        <td> {{ lol[1].price }} </td>
+                        <td> {{ lol[2].day }} </td>
+                        <td> {{ lol[3].procent }} </td>
+                        <td> {{ lol[4].everyweek }} </td>
+                        <td> {{ lol[5].everymonth }} </td>
+                        <td> {{ lol[6].yoy }} </td>
+                        <td> {{ lol[7].marketCap }} </td>
+                        <td> {{ lol[8].data }} </td>
+                      </tr>
+                    </tbody>
+                  </table>   
+                </div>
+                <div id="test10" class="col s12">
+                  <div class="row">
+                    <div class="card-panel green white-text">
+                      Последнее обновления акций {{ mesStocks.parseTime }}
+                    </div>
+
+                    <div class="imp-stone" v-for="(elem, index) of mesStocks.stocks">
+                      
+                      <table class="responsive-table striped border">
+                        <thead>
+                          <tr>
+                              <th class="grey-text">Тикер</th>
+                              <th class="grey-text">Цена</th>
+                              <th class="grey-text">ИЗМ. В %</th>
+                              <th class="grey-text">ИЗМ</th>
+                              <th class="grey-text">Техническии реитинг</th>
+                              <th class="grey-text">Обьем</th>
+                          </tr>
+                        </thead>
+                
+                        <tbody>
+                          <tr>
+                            <td class="bold-text"> {{ elem.ticker.tiker[0] }} <br/> {{ elem.ticker.tiker[1] }} </td>
+                            <td> {{ elem.ticker.price }} </td>
+                            <td> {{ elem.ticker.changesInProcent }} </td>
+                            <td> {{ elem.ticker.changes }} </td>
+                            <td> {{ elem.ticker.technicalRating }} </td>
+                            <td> {{ elem.ticker.volume }} </td>
+                          </tr>
+                        </tbody>
+  
+                        <thead>
+                          <tr>
+                              <th class="grey-text">Обьем*Цена</th>
+                              <th class="grey-text">Рын.Кап.</th>
+                              <th class="grey-text">Цена/Прибыль</th>
+                              <th class="grey-text">Приб./Акцию (TTM)</th>
+                              <th class="grey-text">Сотрудники</th>
+                              <th class="grey-text">Сектор</th>
+                          </tr>
+                        </thead>  
+                        
+                        <tbody>
+                          <tr>
+                            <td> {{ elem.ticker.volumePrice }} </td>
+                            <td> {{ elem.ticker.tradeCap }} </td>
+                            <td> {{ elem.ticker.priceProfit }} </td>
+                            <td> {{ elem.ticker.profitAction }} </td>
+                            <td> {{ elem.ticker.employees }} </td>
+                            <td> {{ elem.ticker.sector }} </td>
+                          </tr>
+                        </tbody>                      
+  
+                      </table>     
+                      
+                      <div class="stone">
+                        <div class="card-panel black white-text" > 
+                          <div v-for="lola of mesUndStocks">
+                            <div v-if="lola == index">
+                              <div v-if="elem.finance[1].length !== 0">
+                               
+                                <table>
+                               
+                                  <tbody>
+                                    <tr>
+                                      <td> {{ elem.finance[1][0].text }} </td>
+                                      <td> {{ elem.finance[1][0].one }} </td>
+                                      <td> {{ elem.finance[1][0].two }} </td>
+                                      <td> {{ elem.finance[1][0].three }} </td>
+                                      <td> {{ elem.finance[1][0].for }} </td>
+                                    </tr>
+                                    
+
+                                    
+                                    <tr>
+                                      <td> {{ elem.finance[1][1].text }} </td>
+                                      <td> {{ elem.finance[1][1].one }} </td>
+                                      <td> {{ elem.finance[1][1].two }} </td>
+                                      <td> {{ elem.finance[1][1].three }} </td>
+                                      <td> {{ elem.finance[1][1].for }} </td>
+                                    </tr>
+                                    
+                                      <tr v-if="elem.finance[1].length !== 2 && elem.finance[1].length !== 3">
+                                        <td> {{ elem.finance[1][2].text }} </td>
+                                        <td> {{ elem.finance[1][2].one }} </td>
+                                        <td> {{ elem.finance[1][2].two }} </td>
+                                        <td> {{ elem.finance[1][2].three }} </td>
+                                        <td> {{ elem.finance[1][2].for }} </td>
+                                      </tr>
+                                      <tr v-if="elem.finance[1].length !== 2 && elem.finance[1].length !== 3">
+                                        <td> {{ elem.finance[1][3].text }} </td>
+                                        <td> {{ elem.finance[1][3].one }} </td>
+                                        <td> {{ elem.finance[1][3].two }} </td>
+                                        <td> {{ elem.finance[1][3].three }} </td>
+                                        <td> {{ elem.finance[1][3].for }} </td>
+                                      </tr>    
+                                    
+                                                                                
+                                  </tbody>
+                                  
+                                </table>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>                  
+                  </div>
+                </div>                
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </body>
+</html>
+
+
+  
+
+  
+  <!-- Подключаем Vue -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+    
+ 
+
+ 
+
+  <script>
+
+    Vue.createApp({
+      data(){
+        return {
+          selected: `F`,
+          data: false,
+          dataRefresh: ``,
+          databasa: [],
+          matket: [
+            {currencies: []},
+            {products: []},
+            {bonds: []},
+            {crypto: []}
+          ],
+          // Страны для рынка валютыы
+          mesCurrenciesCountry: [
+            ``,
+            `Европа`,
+            `Америка`,
+            `Азия`,
+            `Австралия`,
+            `Африка`
+          ],
+          // Виды материалов для рынка товаров
+          mesProductsMaterial: [
+            `Энергетика`,
+            `Металлы`,
+            `Сельское хозяйство`,
+            `Промышленность`,
+            `Домашний скот`,
+            `Индекс`
+          ],
+          // Виды стран для рынка облигаций
+          mesBondsCountry: [
+            ``,
+            `Европа`,
+            `Америка`,
+            `Азия`,
+            `Австралия`,
+            `Африка`
+          ],
+          // Виды криптовалюты для рынка кррипты
+          mesCrypto: [
+            `Crypto`,
+            `BTC`,
+            `ETH`
+          ],
+          // Акции
+          mesStocks: [],
+          // Акции - Финансовая сводка
+          mesFinance: [],
+          // Акции в которых нету обекта finance
+          mesUndStocks: []
+
+        }
+      },
+        mounted(){
+          M.AutoInit();
+
+          
+          
+                let quote =  async()=>{
+                    await  fetch(`/getQuotes`, {
+                      method: 'GET',
+                      mode: 'cors',
+                          headers: {
+                          'content-type': 'application/json'
+                      }
+                      }).then((response)=>{
+                        // Разпарсиваем полученную JSON строку и передаем в следующий then
+                        return response.json()
+                      })
+                      .then((infa)=>{
+
+                        this.matket[0].currencies = [infa.matket[0].currencies];
+                        this.matket[1].products = [infa.matket[0].products]
+                        this.matket[2].bonds = [infa.matket[0].bonds]
+                        this.matket[3].crypto = [infa.matket[0].crypto]
+                       // console.log(this.matket[3].crypto)
+                       
+                        
+                      })
+                }     
+
+                // Обновления данных рынка каждые 15 секунд
+                quote(); 
+                setInterval(() => {
+                  
+                  quote();  
+                //  console.log(`ОБНОВЛЕНИЯ ДАННЫХ`)
+                }, 15000);
+
+
+            
+
+                // Получения данных акций
+               let stoncks = async()=>{
+                     await  fetch(`/stoncks`, {
+                      method: 'GET',
+                      mode: 'cors',
+                          headers: {
+                          'content-type': 'application/json'
+                      }
+                      }).then((response)=>{
+                        // Разпарсиваем полученную JSON строку и передаем в следующий then
+                        return response.json()
+                      })
+                      .then((infa)=>{
+
+                       this.mesStocks = infa;
+                       // console.log(this.mesStocks.stocks[0].finance[1]);
+                       
+                          for(let i= 0; i < this.mesStocks.stocks.length; i++){
+                            // console.log(i);
+                            // console.log(this.mesStocks.stocks[i])
+                            // Определения акций которые не имеют обекта finance
+                            if(this.mesStocks.stocks[i].finance){
+                              this.mesUndStocks.push(i)
+                            } 
+                            /*
+                            if(i !== 161){
+                              for(let men of this.mesStocks.stocks[i].finance){
+                              console.log(men);
+                              }
+                            }
+                            */
+                          }
+
+                          for(let i= 0; i < this.mesStocks.stocks.length; i++){
+                            for(let elem of this.mesUndStocks){
+                              if(i == elem){
+                                console.log(this.mesStocks.stocks[i].finance[1].length);
+                              }
+                            }
+                          }
+                          
+
+                         
+                          
+                      })                
+               }
+
+               stoncks();
+               
+                
+                
+
+
+        },
+        methods: {
+
+
+          form(){
+
+            // Массив для розшшифровки економических показателей
+              let mesEcoIndicators = [{
+                temp: `Темпы роста ВВП`,
+                proc: `Процентная ставка`,
+                infilans: `Уровень инфляции`,
+                dontjob: `Уровень безработицы`,
+                vvp: `Государственный долг к ВВП`,
+                tradeBalance: `Торговый баланс`,
+                checkBalanceVvp: `Счет текущих операций к ВВП`,
+                population: `Население`,
+                WageGrowth: `Рост заработной платы`,
+                ConsumerPriceIndexCPI: `Индекс потребительских цен ИПЦ`,
+                CoreInflationRate: `Уровень базовой инфляции`,
+                ProducerPriceIndex: `Индекс цен производителей`,
+                CrudeOilProduction: `Добыча сырой нефти`,
+                GoldReserve: `Золотой запас`,
+                TradeBalance: `Торговый баланс`,
+                ExternalDebt: `Внешний долг`,
+                CompositeIndexOfBusinessactivityPMI: `Композитный индекс деловой активности PMI`,
+                ManufacturingPMI: `Индекс деловой активности в производственном секторе PMI`,
+                ServicesPMI: `Услуги PMI`,
+                GasolinePrices: `Цены на бензин`,
+                RetailSales: `Розничные продажи (м/м)`,
+                RetailSalesYoY: `Розничные продажи (г/г)`,
+                CorporateTaxRate: `Ставка корпоративного налога`,
+                incomeTaxRate: `Ставка подоходного налога`,
+                creditRating: `Кредитный рейтинг`,
+                NumberOfBuildingPermitsIssued: `Число выданных разрешений на строительство`,
+                ZEWEconomicSentimentIndex: `Индекс экономических настроений ZEW`
+              }]
+
+
+              if(this.selected !== `F`){
+                  fetch(`/microEconomic`, {
+                method: 'GET',
+                mode: 'cors',
+                    headers: {
+                    'content-type': 'application/json'
+                }
+                }).then((response)=>{
+                  // Разпарсиваем полученную JSON строку и передаем в следующий then
+                  return response.json()
+                })
+              
+                .then((infa)=>{
+                  // Возвращаем распарсинную информацию в аргументе resolve
+                  M.toast({html: 'Успешная загрузка'})
+                  this.data = true;
+                  this.dataRefresh = infa.timeCheck;
+                  this.databasa = [];
+
+                // Запись данных
+                  let keys = Object.keys(infa.information[0]);
+                  for(let elem of keys){
+                    if(elem == this.selected){
+                      let keys1 = Object.keys(infa.information[0][elem]);
+                      for(let kek of keys1){
+                        // Замена економических показателей КИРИЛИЦЕЙ на Русские
+                        let keys2 = Object.keys(mesEcoIndicators[0]);
+                        for(let b = 0; b < keys2.length; b++){
+                         if(keys2[b] == kek){
+                          infa.information[0][elem][kek].micro = mesEcoIndicators[0][keys2[b]];
+                         }
+                        }
+                        this.databasa.push(infa.information[0][elem][kek])
+                      }       
+                
+                    }
+                  }
+
+                 // console.log(this.databasa);
+
+                })
+              } else {
+                M.toast({html: 'Выберите страну'})
+              }
+
+          }
+
+        }
+    }).mount("#lol");
+
+  </script>
+
+
